@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Customer
+  email String
+  name  String
+
+  // Product
+  type ProductType
+
+  // Payment
+  stripeSessionId String      @unique
+  stripePaymentId String?
+  status          OrderStatus @default(PENDING)
+
+  // E-Book fields
+  downloadToken     String?   @unique
+  downloadExpiresAt DateTime?
+  downloadedAt      DateTime?
+
+  // Hard Copy fields
+  shippingAddress ShippingAddress?
+  luluOrderId     String?
+  trackingNumber  String?
+  trackingUrl     String?
+  shippedAt       DateTime?
+
+  @@map("orders")
+}
+
+model ShippingAddress {
+  id      String @id @default(cuid())
+  orderId String @unique
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  line1      String
+  line2      String?
+  city       String
+  state      String?
+  postalCode String
+  country    String // ISO 3166-1 alpha-2, e.g. "NG", "GB", "US"
+
+  @@map("shipping_addresses")
+}
+
+enum ProductType {
+  EBOOK
+  HARDCOPY
+}
+
+enum OrderStatus {
+  PENDING // Payment initiated, not yet confirmed
+  PAID // Stripe confirmed payment
+  PROCESSING // Sent to Lulu (hardcopy only)
+  SHIPPED // Lulu shipped — tracking email sent
+  DELIVERED // Optional future state
+  FAILED // Payment failed or was cancelled
+}
