@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-nunito: var(--font-nunito);
-  --font-germania: var(--font-germania);
+  --font-nunito: var(--font-inter);
+  --font-germania: "trajan-pro-3", serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,10 +22,11 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-nunito);
+  font-family: var(--font-inter), sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-germania);
-  font-weight: 700;
+  font-family: "trajan-pro-3", serif;
+  font-weight: 400;
+  font-style: normal;
 }

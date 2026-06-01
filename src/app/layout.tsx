@@ -1,18 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Nunito } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const germania = localFont({
-  src: "../../public/fonts/Boska-Regular.otf",
-  variable: "--font-germania",
-  weight: "300",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -69,8 +61,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nunito.variable} ${germania.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/plj8ned.css" />
+      </head>
       <body className="min-h-full flex flex-col">
         <div className="w-[90%] max-w-6xl mx-auto flex flex-col flex-1">
           {children}
