@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
-import { resend, FROM_EMAIL } from "@/lib/resend";
+import { sendEmail } from "@/lib/zeptomail";
 import { ebookDownloadEmail, hardcopyConfirmationEmail } from "@/lib/emails";
 import { type NextRequest } from "next/server";
 import { randomUUID } from "crypto";
@@ -61,9 +61,9 @@ export async function GET(request: NextRequest) {
       });
 
       const downloadUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/download/${downloadToken}`;
-      await resend.emails.send({
-        from: FROM_EMAIL,
+      await sendEmail({
         to: email,
+        toName: name,
         subject: "Your copy of Think Like a King is ready",
         html: ebookDownloadEmail({ name, downloadUrl }),
       });
@@ -103,9 +103,9 @@ export async function GET(request: NextRequest) {
         },
       });
 
-      await resend.emails.send({
-        from: FROM_EMAIL,
+      await sendEmail({
         to: email,
+        toName: name,
         subject: "Order confirmed — Think Like a King",
         html: hardcopyConfirmationEmail({ name, address }),
       });

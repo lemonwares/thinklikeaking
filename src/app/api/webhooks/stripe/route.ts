@@ -1,6 +1,6 @@
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
-import { resend, FROM_EMAIL } from "@/lib/resend";
+import { sendEmail } from "@/lib/zeptomail";
 import { ebookDownloadEmail, hardcopyConfirmationEmail } from "@/lib/emails";
 import { type NextRequest } from "next/server";
 import { randomUUID } from "crypto";
@@ -93,9 +93,9 @@ async function handleEbook({
   // Send download email
   const downloadUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/download/${downloadToken}`;
 
-  await resend.emails.send({
-    from: FROM_EMAIL,
+  await sendEmail({
     to: email,
+    toName: name,
     subject: "Your copy of Think Like a King is ready",
     html: ebookDownloadEmail({ name, downloadUrl }),
   });
@@ -147,9 +147,9 @@ async function handleHardcopy({
   // await db.order.update({ where: { id: order.id }, data: { luluOrderId, status: "PROCESSING" } });
 
   // Send confirmation email
-  await resend.emails.send({
-    from: FROM_EMAIL,
+  await sendEmail({
     to: email,
+    toName: name,
     subject: "Order confirmed — Think Like a King",
     html: hardcopyConfirmationEmail({ name, address }),
   });

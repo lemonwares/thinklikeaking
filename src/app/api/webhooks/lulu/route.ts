@@ -1,4 +1,4 @@
-import { resend, FROM_EMAIL } from "@/lib/resend";
+import { sendEmail } from "@/lib/zeptomail";
 import { hardcopyShippedEmail } from "@/lib/emails";
 import { type NextRequest } from "next/server";
 import { createHmac } from "crypto";
@@ -75,9 +75,9 @@ export async function POST(request: NextRequest) {
     });
 
     // ── AUTO-SEND TRACKING EMAIL ─────────────────────────────────────────────
-    await resend.emails.send({
-      from: FROM_EMAIL,
+    await sendEmail({
       to: order.email,
+      toName: order.name,
       subject: "Your copy of Think Like a King is on its way",
       html: hardcopyShippedEmail({
         name: order.name,
