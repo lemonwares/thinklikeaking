@@ -46,13 +46,15 @@ export async function POST(request: NextRequest) {
   const meta = session.metadata ?? {};
   const email = session.customer_email ?? "";
   const name = meta.customerName ?? "Customer";
-  const productType = meta.productType as "EBOOK" | "HARDCOPY";
+  const productType = meta.productType as "EBOOK" | "HARDCOPY" | "BUNDLE";
 
   try {
     if (productType === "EBOOK") {
       await handleEbook({ session, email, name });
     } else if (productType === "HARDCOPY") {
       await handleHardcopy({ session, email, name, meta });
+    } else if (productType === "BUNDLE") {
+      await handleBundle({ session, email, name, meta });
     }
   } catch (err) {
     console.error("[stripe-webhook] Handler error:", err);
@@ -156,5 +158,68 @@ async function handleHardcopy({
 
   console.log(
     `[stripe-webhook] Hardcopy order ${order.id} created for ${email}`,
+  );
+}
+
+// ── Sovereign Bundle handler ──────────────────────────────────────────────────
+
+async function handleBundle({
+  session,
+  email,
+  name,
+  meta,
+}: {
+  session: Stripe.Checkout.Session;
+  email: string;
+  name: string;
+  meta: Record<string, string>;
+}) {
+  const downloadToken = randomUUID();
+  const downloadExpiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000); // 48h
+  const address = {
+    line1: meta.addressLine1,
+    line2: meta.addressLine2 || null,
+    city: meta.addressCity,
+    state: meta.addressState || null,
+    postalCode: meta.addressPostalCode,
+    country: meta.addressCountry,
+  };
+
+  // Save order as HARDCOPY type so print queue pulls it, but include E-Book download details
+  const order = await prisma.order.create({
+    data: {
+      email,
+      name,
+      type: "HARDCOPY",
+      stripeSessionId: session.id,
+      stripePaymentId: session.payment_intent as string | undefined,
+      status: "PAID",
+      downloadToken,
+      downloadExpiresAt,
+      shippingAddress: {
+        create: address,
+      },
+    },
+  });
+
+  // 1. Send E-Book download email
+  const downloadUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/download/${downloadToken}`;
+  await sendEmail({
+    to: email,
+    toName: name,
+    subject: "Your copy of Think Like a King (Digital Edition) is ready",
+    html: ebookDownloadEmail({ name, downloadUrl }),
+  });
+
+  // 2. Send Hard Copy shipping confirmation email
+  await sendEmail({
+    to: email,
+    toName: name,
+    subject: "Order confirmed — Think Like a King (Hardcover Edition)",
+    html: hardcopyConfirmationEmail({ name, address }),
+  });
+
+  console.log(
+    `[stripe-webhook] Bundle order ${order.id} successfully created and digital+print confirmation emails dispatched.`
   );
 }

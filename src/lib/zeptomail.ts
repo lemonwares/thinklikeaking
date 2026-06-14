@@ -24,7 +24,7 @@ export async function sendEmail({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Zoho-enczapikey ${process.env.ZEPTOMAIL_API_KEY}`,
+      Authorization: `${process.env.ZEPTOMAIL_API_KEY}`,
     },
     body: JSON.stringify({
       from: {

@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Boska";
+  src: url("/fonts/Boska-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FBF9F6;
+  --foreground: #13110E;
 }
 
 @theme inline {
@@ -10,12 +18,20 @@
   --color-foreground: var(--foreground);
   --font-nunito: var(--font-inter);
   --font-germania: "trajan-pro-3", serif;
+  --font-boska: "Boska", serif;
+  
+  --color-cream-light: #FBF9F6;
+  --color-cream-dark: #F7F5F0;
+  --color-accent-gold: #C9A84C;
+  --color-accent-orange: #E06F45;
+  --color-charcoal: #0F0D0B;
+  --color-charcoal-light: #1A1714;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #fafafa;
+    --background: #0F0D0B;
+    --foreground: #FBF9F6;
   }
 }
 
@@ -23,10 +39,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "trajan-pro-3", serif;
+  font-family: "Boska", "trajan-pro-3", serif;
   font-weight: 400;
   font-style: normal;
 }
