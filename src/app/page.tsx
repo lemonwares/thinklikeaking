@@ -15,12 +15,12 @@ const faqs = [
     a: "You can subscribe to our newsletter in the footer below. Subscribed readers receive early-bird copies of essays, private audio commentary from Michael King, and notifications about upcoming seminars and print editions.",
   },
   {
-    q: "CAN I ORDER A HARD COPY OF THE BOOK?",
-    a: "Yes. The Printed Edition is a premium hardcover bound in fine linen. We offer global shipping with fully tracked shipping numbers. You can secure your copy by selecting the Hardcover option in our Feature Books section.",
+    q: "WILL THERE BE A PRINTED HARDCOVER EDITION?",
+    a: "Yes. We are currently preparing a premium hardcover edition bound in fine linen. To be notified immediately when it becomes available, you can subscribe to our newsletter in the footer below.",
   },
   {
-    q: "WHAT IS THE DELIVERY TIMEFRAME FOR THE EDITIONS?",
-    a: "Digital editions (E-Books) are delivered instantly to your email inbox immediately after secure checkout. Printed Hardcovers are prepared and shipped within 24-48 hours, taking 3 to 7 business days for global transit depending on your region.",
+    q: "HOW IS THE DIGITAL E-BOOK DELIVERED?",
+    a: "Digital editions (E-Books) are delivered instantly to your email inbox immediately after secure checkout. You will receive a link to download the E-Book in all standard formats (EPUB, PDF) compatible with Kindle, iPad, phone, or laptop.",
   },
   {
     q: "HOW SECURE IS THE CHECKOUT PROCESS?",
@@ -31,13 +31,13 @@ const faqs = [
 export default function Home() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [initialCheckoutType, setInitialCheckoutType] = useState<
-    "ebook" | "hardcopy" | "bundle" | null
+    "ebook" | null
   >(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const openCheckout = (
-    type: "ebook" | "hardcopy" | "bundle" | null = null,
+    type: "ebook" | null = null,
   ) => {
     setInitialCheckoutType(type);
     setIsCheckoutOpen(true);
@@ -106,7 +106,7 @@ export default function Home() {
 
             {/* Book mockup overlapping image */}
             <div
-              onClick={() => openCheckout("hardcopy")}
+              onClick={() => openCheckout("ebook")}
               className="mt-14 lg:mt-24 relative group cursor-pointer w-full max-w-[290px] self-center lg:self-start"
             >
               <div className="absolute inset-0 bg-accent-gold/10 blur-2xl rounded-lg group-hover:bg-accent-gold/25 transition-all duration-500" />
@@ -373,22 +373,22 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
-          {/* Card 1: Ebook */}
+        <div className="flex justify-center max-w-md mx-auto px-4">
+          {/* Card: Ebook (Highlighted now as it is the only one) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-[#F8F6F1] border border-charcoal/10 rounded-md p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 group hover:border-charcoal/20"
+            className="bg-white border-2 border-accent-gold rounded-md p-8 flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 relative group w-full hover:border-charcoal"
           >
             <div>
               <div className="flex justify-between items-center mb-6">
                 <span className="font-mono text-charcoal/40 text-sm font-bold">
                   01
                 </span>
-                <span className="text-[10px] md:text-xs bg-charcoal/5 text-charcoal px-3 py-1 rounded-full uppercase tracking-wider font-bold">
-                  Digital
+                <span className="text-[10px] md:text-xs bg-accent-gold/15 text-accent-gold px-3 py-1 rounded-full uppercase tracking-wider font-bold">
+                  Digital Edition
                 </span>
               </div>
               <div className="relative aspect-3/4 w-[150px] mx-auto mb-8 bg-white border border-charcoal/10 shadow-md group-hover:shadow-lg transition-shadow duration-300">
@@ -406,7 +406,7 @@ export default function Home() {
               {/* Increased size: text-sm md:text-base (15/16px) */}
               <p className="text-center text-charcoal/70 text-sm md:text-base leading-relaxed mb-6 px-2">
                 Instant download link sent to your email. Read on Kindle, iPad,
-                phone, or laptop. Secures access to all formats.
+                phone, or laptop. Secures full lifetime access.
               </p>
             </div>
             <div>
@@ -415,116 +415,9 @@ export default function Home() {
               </p>
               <button
                 onClick={() => openCheckout("ebook")}
-                className="w-full py-3.5 bg-white border border-charcoal/15 rounded-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-charcoal hover:text-white hover:border-charcoal transition-all cursor-pointer"
-              >
-                Buy Digital Now
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Card 2: Hardcover (Highlighted) */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white border-2 border-accent-gold rounded-md p-8 flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 relative group scale-100 lg:scale-[1.03] z-10 hover:border-charcoal"
-          >
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent-gold text-charcoal font-bold text-[10px] tracking-[0.25em] uppercase px-5 py-2 rounded-full shadow-md">
-              RECOMMENDED
-            </div>
-            <div>
-              <div className="flex justify-between items-center mb-6">
-                <span className="font-mono text-charcoal/40 text-sm font-bold">
-                  02
-                </span>
-                <span className="text-[10px] md:text-xs bg-accent-gold/15 text-accent-gold px-3 py-1 rounded-full uppercase tracking-wider font-bold">
-                  Printed
-                </span>
-              </div>
-              <div className="relative aspect-3/4 w-[150px] mx-auto mb-8 bg-white border border-charcoal/10 shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                <Image
-                  src="/cover_front.png"
-                  fill
-                  alt="Hardcopy Cover"
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="text-center font-boska text-2xl md:text-3xl text-charcoal font-bold mb-3">
-                Printed Hardcover
-              </h3>
-
-              {/* Increased size: text-sm md:text-base (15/16px) */}
-              <p className="text-center text-charcoal/70 text-sm md:text-base leading-relaxed mb-6 px-2">
-                Linen-bound premium hardcover with gold foil stamping. Worldwide
-                shipping with dynamic parcel tracking.
-              </p>
-            </div>
-            <div>
-              <p className="text-center font-mono font-bold text-xl mb-5 text-charcoal">
-                $25.00 <span className="text-[10px] text-charcoal/50">USD</span>
-              </p>
-              <button
-                onClick={() => openCheckout("hardcopy")}
                 className="w-full py-3.5 bg-accent-gold text-charcoal rounded-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-charcoal hover:text-white transition-all cursor-pointer shadow-md"
               >
-                Buy Hardcover Now
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Card 3: Bundle */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-[#F8F6F1] border border-charcoal/10 rounded-md p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 group hover:border-charcoal/20"
-          >
-            <div>
-              <div className="flex justify-between items-center mb-6">
-                <span className="font-mono text-charcoal/40 text-sm font-bold">
-                  03
-                </span>
-                <span className="text-[10px] md:text-xs bg-charcoal/5 text-charcoal px-3 py-1 rounded-full uppercase tracking-wider font-bold">
-                  Ultimate
-                </span>
-              </div>
-              <div className="relative aspect-3/4 w-[150px] mx-auto mb-8 bg-white border border-charcoal/10 shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                <div className="absolute inset-0 scale-[0.85] translate-x-4 bg-white border border-charcoal/10 shadow-sm overflow-hidden">
-                  <Image
-                    src="/back_cover.png"
-                    fill
-                    alt="Bundle Back Cover"
-                    className="object-cover"
-                  />
-                </div>
-                <Image
-                  src="/cover_front.png"
-                  fill
-                  alt="Bundle Cover"
-                  className="object-cover scale-95 -translate-x-2 bg-white"
-                />
-              </div>
-              <h3 className="text-center font-boska text-2xl md:text-3xl text-charcoal font-bold mb-3">
-                Sovereign Bundle
-              </h3>
-
-              {/* Increased size: text-sm md:text-base (15/16px) */}
-              <p className="text-center text-charcoal/70 text-sm md:text-base leading-relaxed mb-6 px-2">
-                Both E-Book and Hardcover. Read digitally instantly, and receive
-                the elegant print volume at your doorstep.
-              </p>
-            </div>
-            <div>
-              <p className="text-center font-mono font-bold text-xl mb-5 text-charcoal">
-                $30.00 <span className="text-[10px] text-charcoal/50">USD</span>
-              </p>
-              <button
-                onClick={() => openCheckout("bundle")}
-                className="w-full py-3.5 bg-white border border-charcoal/15 rounded-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-charcoal hover:text-white hover:border-charcoal transition-all cursor-pointer"
-              >
-                Buy Sovereign Bundle
+                Buy Digital Now
               </button>
             </div>
           </motion.div>
