@@ -767,10 +767,15 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-16">
             {/* Left graphic logo */}
             <div className="md:col-span-5 flex flex-col items-start">
-              <span className="text-[120px] md:text-[150px] lg:text-[180px] font-boska leading-none text-white font-black tracking-tighter opacity-15 hover:opacity-25 transition-opacity duration-300 select-none">
-                MK
-              </span>
-              <p className="text-[10px] md:text-xs text-accent-gold font-bold tracking-[0.3em] uppercase mt-2">
+              <div className="relative w-[140px] h-[120px] opacity-25 hover:opacity-45 transition-opacity duration-300 select-none">
+                <Image
+                  src="/rv_logo.webp"
+                  alt="Revere Logo"
+                  fill
+                  className="object-contain invert"
+                />
+              </div>
+              <p className="text-[10px] md:text-xs text-accent-gold font-bold tracking-[0.3em] uppercase mt-4">
                 REVERE & REGENT
               </p>
             </div>
