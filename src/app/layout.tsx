@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "book",
   ],
   icons: {
-    icon: "/book.webp",
+    icon: "/cover_front.png",
   },
   openGraph: {
     title: "Think Like a King",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Think Like a King — a book that challenges you to elevate your mindset, lead with purpose, and live with the conviction of royalty.",
     images: [
       {
-        url: "/book.webp",
+        url: "/cover_front.png",
         width: 1200,
         height: 630,
         alt: "Think Like a King — Book Cover",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Think Like a King",
     description:
       "Think Like a King — a book that challenges you to elevate your mindset, lead with purpose, and live with the conviction of royalty.",
-    images: ["/book.webp"],
+    images: ["/cover_front.png"],
   },
 };
 

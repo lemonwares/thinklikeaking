@@ -112,8 +112,8 @@ export default function Home() {
               <div className="absolute inset-0 bg-accent-gold/10 blur-2xl rounded-lg group-hover:bg-accent-gold/25 transition-all duration-500" />
               <div className="relative border border-charcoal/15 rounded-md overflow-hidden aspect-3/4 bg-cream-dark shadow-2xl group-hover:shadow-[0_25px_60px_rgba(201,168,76,0.25)] transition-all duration-500 transform group-hover:-translate-y-3 group-hover:scale-[1.02]">
                 <Image
-                  src="/book_mockup.png"
-                  alt="Think Like a King Book Mockup"
+                  src="/cover_front.png"
+                  alt="Think Like a King Book Cover"
                   fill
                   className="object-cover"
                   priority
@@ -393,7 +393,7 @@ export default function Home() {
               </div>
               <div className="relative aspect-3/4 w-[150px] mx-auto mb-8 bg-white border border-charcoal/10 shadow-md group-hover:shadow-lg transition-shadow duration-300">
                 <Image
-                  src="/book_mockup.png"
+                  src="/cover_front.png"
                   fill
                   alt="Ebook Cover"
                   className="object-cover scale-95"
@@ -444,7 +444,7 @@ export default function Home() {
               </div>
               <div className="relative aspect-3/4 w-[150px] mx-auto mb-8 bg-white border border-charcoal/10 shadow-md group-hover:shadow-lg transition-shadow duration-300">
                 <Image
-                  src="/book_mockup.png"
+                  src="/cover_front.png"
                   fill
                   alt="Hardcopy Cover"
                   className="object-cover"
@@ -491,9 +491,16 @@ export default function Home() {
                 </span>
               </div>
               <div className="relative aspect-3/4 w-[150px] mx-auto mb-8 bg-white border border-charcoal/10 shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                <div className="absolute inset-0 scale-[0.85] translate-x-4 bg-white/40 border border-charcoal/10 shadow-sm" />
+                <div className="absolute inset-0 scale-[0.85] translate-x-4 bg-white border border-charcoal/10 shadow-sm overflow-hidden">
+                  <Image
+                    src="/back_cover.png"
+                    fill
+                    alt="Bundle Back Cover"
+                    className="object-cover"
+                  />
+                </div>
                 <Image
-                  src="/book_mockup.png"
+                  src="/cover_front.png"
                   fill
                   alt="Bundle Cover"
                   className="object-cover scale-95 -translate-x-2 bg-white"
@@ -553,7 +560,7 @@ export default function Home() {
               className="absolute w-[160px] md:w-[190px] aspect-3/4 bg-cream-dark border border-white/10 shadow-lg rounded-sm overflow-hidden hidden sm:block z-0"
             >
               <Image
-                src="/book_mockup.png"
+                src="/back_cover.png"
                 fill
                 alt="Left Book Overlay"
                 className="object-cover filter sepia-[0.2]"
@@ -569,7 +576,7 @@ export default function Home() {
               className="absolute w-[180px] md:w-[210px] aspect-3/4 bg-cream-dark border border-white/10 shadow-lg rounded-sm overflow-hidden hidden sm:block z-10"
             >
               <Image
-                src="/book_mockup.png"
+                src="/back_cover.png"
                 fill
                 alt="Right Book Overlay"
                 className="object-cover filter saturate-[0.85]"
@@ -585,7 +592,7 @@ export default function Home() {
               className="w-[210px] md:w-[250px] aspect-3/4 bg-cream-dark border-2 border-accent-gold/30 shadow-2xl rounded-sm overflow-hidden relative z-20"
             >
               <Image
-                src="/book_mockup.png"
+                src="/cover_front.png"
                 fill
                 alt="Center Book Overlay"
                 className="object-cover"
