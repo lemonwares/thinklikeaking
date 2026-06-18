@@ -368,7 +368,7 @@ export default function Home() {
           <span className="text-accent-gold font-extrabold text-xs md:text-sm tracking-[0.35em] uppercase mb-3">
             Collection
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-boska uppercase tracking-wide text-charcoal font-bold">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-boska capitalize tracking-wide text-charcoal font-bold">
             Feature Books
           </h2>
         </div>
@@ -537,7 +537,7 @@ export default function Home() {
             <span className="text-accent-gold font-mono text-xs md:text-sm uppercase tracking-[0.25em] mb-3 inline-block">
               Artistic Showcase
             </span>
-            <h3 className="font-boska text-3xl md:text-5xl lg:text-6xl uppercase tracking-wide font-bold">
+            <h3 className="font-boska text-3xl md:text-5xl lg:text-6xl capitalize tracking-wide font-bold">
               Refining The Mind
             </h3>
           </div>
@@ -712,7 +712,7 @@ export default function Home() {
             <span className="text-accent-gold font-bold text-xs md:text-sm tracking-[0.3em] uppercase mb-3 inline-block">
               COMMON INQUIRIES
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-boska uppercase tracking-wide text-charcoal font-bold">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-boska capitalize tracking-wide text-charcoal font-bold">
               Quick Answers
             </h2>
           </div>
